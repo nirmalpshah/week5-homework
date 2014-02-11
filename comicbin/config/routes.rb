@@ -3,7 +3,12 @@ Comicbin::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root "comics#index"
+	get "/comics" => 'comics#index'
+	get "/comics/show/:comic_id" => 'comics#show'
+	delete "/comics/delete/:comic_id" => 'comics#delete'
+	get "/comics/new" => 'comics#new'
+	put "/comics/create" => 'comics#create'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

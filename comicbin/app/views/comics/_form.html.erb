@@ -2,34 +2,35 @@
   <div class='well'>
 
   <!-- WRITE THE CORRECT FORM HEADER AND BLOCK USING ERB -->
-    <% if @comic.errors.any? %>
+    <% if @errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@comic.errors.count, "error") %> prohibited this comic from being saved:</h2>
-
+				<h2>
+					<%= pluralize(@errors.count, "error") %> prohibited this comic from being saved:
+				</h2>
         <ul>
-        <% @comic.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
+					<% @errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
         </ul>
       </div>
     <% end %>
 
-    <div class="form-group">
-      <!-- DISPLAY A TITLE LABEL -->
-      <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
-    </div>
-    <div class="form-group">
-      <!-- DISPLAY A DESCRIPTION LABEL -->
-      <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
-    </div>
-    <div class="form-group">
-      <!-- DISPLAY AN IMAGE LABEL -->
-      <!-- DISPLAY A TEXT FIELD ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
-    </div>
-    <div class="actions">
-      <!-- DISPLAY A SUBMIT BUTTON WITH A CLASS OF 'btn btn-primary' -->
-    </div>
-
-  <% end %>
+		<%= form_for @comic, :url => {:action => "create"}, method: "put" do |c| %>
+			<div class="form-group">
+				<%= c.label :title %>:
+				<%= c.text_field :title, class: 'form-control' %>
+			</div>
+			<div class="form-group">
+				<%= c.label :description %>:
+				<%= c.text_field :description, class: 'form-control' %>
+			</div>
+			<div class="form-group">
+				<%= c.label :image_url %>:
+				<%= c.text_field :image_url, class: 'form-control' %>
+			</div>
+			<div class="actions">
+				<%= c.submit class:'btn btn-primary' %>
+			</div>
+		<% end %>
   </div>
 </div>
